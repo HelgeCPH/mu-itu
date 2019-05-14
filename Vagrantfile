@@ -11,9 +11,10 @@ Vagrant.configure("2") do |config|
     vb.memory = "6144"
   end
 
-  config.vm.define "windows" do |windows|
-    windows.vm.box = "senglin/win-10-enterprise-vs2015community"
-    windows.vm.box_version = "1.0.0"
+  config.vm.define "win" do |windows|
+    windows.vm.box = "gusztavvargadr/visual-studio"
+    # windows.vm.box = "senglin/win-10-enterprise-vs2015community"
+    # windows.vm.box_version = "1.0.0"
 
   end
 
@@ -23,7 +24,7 @@ Vagrant.configure("2") do |config|
     macos.vm.box = "yzgyyang/macOS-10.14"
 
     macos.vm.provision "shell", inline: <<-SHELL
-      cp $HOME/host/build_python.sh .
+      cp /Users/vagrant/host/build_python.sh .
       chmod u+x build_python.sh
       ./build_python.sh
     SHELL
