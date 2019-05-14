@@ -55,6 +55,10 @@ echo "Turning the Python distribution into a Mu Editor App..."
 echo "Installing Mu Editor..."
 "$BUILD_OUT"/bin/pip3.6 install mu-editor
 
+# Replace their icon with ours :)
+cp "$HOST"/mu-editor.iconset/icon_256x256.png "$BUILD_OUT"/python/lib/python3.6/site-packages/mu/resources/images/icon.png
+
+
 echo "Copying our wrapper functions..."
 cp "$HOST"/mu_env.sh "$BUILD_OUT"/bin
 #TODO: Replace shebang of pip3.6 of mu-editor in bin
