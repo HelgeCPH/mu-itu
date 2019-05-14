@@ -15,7 +15,12 @@ brew update
 brew install wget
 brew install openssl
 brew install zlib
-brew install tk-tcl
+brew install tcl-tk
+# lzma is now part of the xz formula...
+brew install xz
+
+brew install create-dmg
+# TODO: Check missing dependencies...
 
 
 echo "Checking current working directory..."
@@ -32,7 +37,7 @@ tar -zxvf Python-$VERSION.tgz &> /dev/null
 cd Python-$VERSION || exit
 
 echo "Configuring Python..."
-./configure CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -L/usr/local/opt/tcl-tk/lib" LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/tcl-tk/lib" --prefix="$BUILD_OUT" --enable-optimizations > "$CURRENT_DIR"/configure.log 2>&1
+./configure CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -I/usr/local/opt/xz/include/ -I/usr/local/opt/tcl-tk/include" LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/xz/lib -L/usr/local/opt/tcl-tk/lib" --prefix="$BUILD_OUT" --enable-optimizations > "$CURRENT_DIR"/configure.log 2>&1
 
 echo "Building Python..."
 make altinstall > "$CURRENT_DIR"/make.log 2>&1
@@ -107,7 +112,7 @@ tar -cjf mu-editor.tar.bz2 mu-editor.app
 du -sk "$HOME"/mu-editor.tar.bz2
 
 # That is forbidden, why? -> Mount host dir to under $HOME
-mv mu-editor.tar.bz2 "$HOME"/host
+sudo mv mu-editor.tar.bz2 "$HOME"/host
 
 mv "$HOME"/mu-editor.app /Applications
 
