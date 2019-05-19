@@ -5,9 +5,9 @@ $pythonTMPDest = "$env:TEMP\python-3.7.3-amd64.exe"
 Invoke-WebRequest $pythonURL -OutFile $pythonTMPDest
 
 # Install Python for this user only without tests and without test suite
-"$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 Include_test=0"
+Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 Include_test=0"
 Write-Output "$env:PATH"
-
-pip install mu-editor
-pip install shortcut
-shortcut mu-editor
+Write-Output "$pythonTMPDest"
+Invoke-Expression "$env:LOCALAPPDATA\Programs\Python\Python37\Scripts\pip.exe install mu-editor"
+Invoke-Expression "$env:LOCALAPPDATA\Programs\Python\Python37\Scripts\pip.exe install shortcut"
+Invoke-Expression "shortcut mu-editor"
