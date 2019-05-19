@@ -5,7 +5,7 @@ $pythonTMPDest = "$env:TEMP\python-3.7.3-amd64.exe"
 Invoke-WebRequest $pythonURL -OutFile $pythonTMPDest
 
 # Install Python for this user only without tests and without test suite
-$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 Include_test=0
+"$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 Include_test=0"
 Write-Output "$env:PATH"
 
 pip install mu-editor
