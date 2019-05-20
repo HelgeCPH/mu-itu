@@ -6,6 +6,10 @@
 Write-Output "Downloading Python..."
 $pythonURL = 'https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe'
 $pythonTMPDest = "$env:TEMP\python-3.7.3-amd64.exe"
+
+# I added the following line as older builds of Windows 10 threw SSL/TSL errors
+# https://stackoverflow.com/questions/41618766/powershell-invoke-webrequest-fails-with-ssl-tls-secure-channel
+[Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"
 Invoke-WebRequest $pythonURL -OutFile $pythonTMPDest
 $targetDir = "$env:LOCALAPPDATA\Programs\ITUSummer"
 
