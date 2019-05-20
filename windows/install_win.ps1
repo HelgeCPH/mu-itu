@@ -1,4 +1,8 @@
-# Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+# Installation of Python and Mu-Editor inspired on the installation of
+# Chocolatey, see https://chocolatey.org/install
+
+# On a Windows system, start PowerShell and run the following command:
+# Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/HelgeCPH/mu-itu/master/windows/install_win.ps1'))
 Write-Output "Downloading Python..."
 $pythonURL = 'https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe'
 $pythonTMPDest = "$env:TEMP\python-3.7.3-amd64.exe"
