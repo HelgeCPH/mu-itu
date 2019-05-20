@@ -20,4 +20,11 @@ Write-Output "Downloading Mu-Editor..."
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install mu-editor"
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install shortcut"
 Invoke-Expression "shortcut mu-editor"
+
+$iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/mu-editor.iconset/icon_256x256.png'
+$splashURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/splash-screen.png'
+$imageDest = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37Lib\site-packages\mu\resources\images\"
+Invoke-WebRequest $iconURL -OutFile "$imageDest\icon.png"
+Invoke-WebRequest $splashURL -OutFile "$imageDest\splash-screen.png"
+
 Write-Output "Done..."
