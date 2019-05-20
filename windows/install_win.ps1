@@ -33,7 +33,7 @@ while (!(Test-Path "$pip")) {
 }
 
 Write-Output "Downloading Mu-Editor..."
-Invoke-Expression "$pip install mu-editor"
+Invoke-Expression "$pip install --no-warn-script-location mu-editor"
 
 Write-Output "Replacing art work..."
 $iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/mu-editor.iconset/icon_256x256.png'
@@ -46,10 +46,13 @@ Write-Output "Creating shortcut..."
 # Invoke-Expression "$pip install shortcut"
 #Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\shortcut mu-editor"
 # https://stackoverflow.com/questions/9701840/how-to-create-a-shortcut-using-powershell
+$iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/icon_48x48.ico'
+Invoke-WebRequest $iconURL -OutFile "$imageDest\icon.ico"
+
 $wshShell = New-Object -comObject WScript.Shell
 $shortcut = $wshShell.CreateShortcut("$Home\Desktop\mu-editor.lnk")
 $shortcut.TargetPath = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\mu-editor.exe"
-$shortcut.IconLocation = "$imageDest\icon.png"
+$shortcut.IconLocation = "$imageDest\icon.ico"
 $shortcut.Save()
 
 Write-Output "Done..."
