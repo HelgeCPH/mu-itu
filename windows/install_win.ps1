@@ -18,7 +18,9 @@ Write-Output "Installing Python..."
 # https://docs.python.org/3/using/windows.html#installing-without-ui
 # Install Python for this user only without tests and without test suite
 # I do not think that I need this again:
-Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0"
+Start-Job -Name InstallPythonJob -ScriptBlock {
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0" }
+Wait-Job -Name InstallPythonJob
 
 Write-Output "Downloading Mu-Editor..."
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install mu-editor"
