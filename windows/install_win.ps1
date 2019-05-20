@@ -19,13 +19,15 @@ Write-Output "Installing Python..."
 # Install Python for this user only without tests and without test suite
 # I do not think that I need this again:
 Start-Job -Name InstallPythonJob -ScriptBlock {
-Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0" }
+  Set-ExecutionPolicy Bypass -Scope Process -Force
+  Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0"
+}
 Wait-Job -Name InstallPythonJob
 
 Write-Output "Downloading Mu-Editor..."
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install mu-editor"
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install shortcut"
-Invoke-Expression "shortcut mu-editor"
+Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\shortcut mu-editor"
 
 Write-Output "Replacing art work..."
 $iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/mu-editor.iconset/icon_256x256.png'
