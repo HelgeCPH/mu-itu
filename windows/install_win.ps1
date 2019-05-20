@@ -11,7 +11,7 @@ $pythonTMPDest = "$env:TEMP\python-3.7.3-amd64.exe"
 # https://stackoverflow.com/questions/41618766/powershell-invoke-webrequest-fails-with-ssl-tls-secure-channel
 [Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"
 Invoke-WebRequest $pythonURL -OutFile $pythonTMPDest
-$targetDir = "$env:LOCALAPPDATA\Programs\ITUSummer"
+$targetDir = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37"
 
 Write-Output "Installing Python..."
 # Installation based on:
