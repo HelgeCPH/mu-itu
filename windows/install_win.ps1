@@ -24,7 +24,7 @@ Write-Output "Installing Python..."
 # }
 # Wait-Job -Name InstallPythonJob
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0" | Out-Null
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0 | Out-Null"
 
 Write-Output "Downloading Mu-Editor..."
 Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install mu-editor"
