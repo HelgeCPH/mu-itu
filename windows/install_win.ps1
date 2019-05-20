@@ -13,11 +13,11 @@ Write-Output "Installing Python..."
 # Installation based on:
 # https://docs.python.org/3/using/windows.html#installing-without-ui
 # Install Python for this user only without tests and without test suite
-Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 DefaultJustForMeTargetDir='$targetDir' Include_test=0 SimpleInstall=1 SimpleInstallDescription='Just for me, no test suite.'"
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 PrependPath=1 DefaultJustForMeTargetDir='$targetDir' Include_test=0 SimpleInstall=1 SimpleInstallDescription='Just for me, no test suite.'"
 #Write-Output "$env:PATH"
 #Write-Output "$pythonTMPDest"
 Write-Output "Downloading Mu-Editor..."
-Invoke-Expression "$env:LOCALAPPDATA\Programs\Python\Python37\Scripts\pip.exe install mu-editor"
-Invoke-Expression "$env:LOCALAPPDATA\Programs\Python\Python37\Scripts\pip.exe install shortcut"
+Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install mu-editor"
+Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe install shortcut"
 Invoke-Expression "shortcut mu-editor"
 Write-Output "Done..."
