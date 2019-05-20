@@ -23,7 +23,6 @@ Write-Output "Installing Python..."
 #   Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0"
 # }
 # Wait-Job -Name InstallPythonJob
-
 Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0 | Out-Null"
 
 $pip = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe"
@@ -43,8 +42,6 @@ Invoke-WebRequest $iconURL -OutFile "$imageDest\icon.png"
 Invoke-WebRequest $splashURL -OutFile "$imageDest\splash-screen.png"
 
 Write-Output "Creating shortcut..."
-# Invoke-Expression "$pip install shortcut"
-#Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\shortcut mu-editor"
 # https://stackoverflow.com/questions/9701840/how-to-create-a-shortcut-using-powershell
 $iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/icon_48x48.ico'
 Invoke-WebRequest $iconURL -OutFile "$imageDest\icon.ico"
