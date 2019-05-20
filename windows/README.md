@@ -17,7 +17,7 @@ On a Windows system:
 
 
 
-
+<!--
 
 ## With `cmd.exe`
 
@@ -25,4 +25,4 @@ On a Windows system:
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/HelgeCPH/mu-itu/master/windows/install_win.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
 
-
+-->
