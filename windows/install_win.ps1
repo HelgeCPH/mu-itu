@@ -27,7 +27,10 @@ Write-Output "Installing Python..."
 Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression "$pythonTMPDest /quiet InstallAllUsers=0 DefaultJustForMeTargetDir=$targetDir PrependPath=1 Include_test=0 | Out-Null"
 
 $pip = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\pip.exe"
-while (!(Test-Path "$pip")) { Start-Sleep 5 }
+while (!(Test-Path "$pip")) {
+    Start-Sleep 5
+    Write-Output "."
+}
 
 Write-Output "Downloading Mu-Editor..."
 Invoke-Expression "$pip install mu-editor"
@@ -35,12 +38,18 @@ Invoke-Expression "$pip install mu-editor"
 Write-Output "Replacing art work..."
 $iconURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/mu-editor.iconset/icon_256x256.png'
 $splashURL = 'https://github.com/HelgeCPH/mu-itu/raw/master/splash-screen.png'
-$imageDest = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Lib\site-packages\mu\resources\images\"
+$imageDest = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Lib\site-packages\mu\resources\images"
 Invoke-WebRequest $iconURL -OutFile "$imageDest\icon.png"
 Invoke-WebRequest $splashURL -OutFile "$imageDest\splash-screen.png"
 
 Write-Output "Creating shortcut..."
-Invoke-Expression "$pip install shortcut"
-Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\shortcut mu-editor"
+# Invoke-Expression "$pip install shortcut"
+#Invoke-Expression "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\shortcut mu-editor"
+# https://stackoverflow.com/questions/9701840/how-to-create-a-shortcut-using-powershell
+$wshShell = New-Object -comObject WScript.Shell
+$shortcut = $wshShell.CreateShortcut("$Home\Desktop\mu-editor.lnk")
+$shortcut.TargetPath = "$env:LOCALAPPDATA\Programs\ITUSummer\Python37\Scripts\mu-editor.exe"
+$shortcut.IconLocation = "$imageDest\icon.png"
+$shortcut.Save()
 
 Write-Output "Done..."
