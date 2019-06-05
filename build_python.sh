@@ -18,6 +18,7 @@ brew install zlib
 brew install tcl-tk
 # lzma is now part of the xz formula...
 brew install xz
+brew install sqlite
 
 brew install create-dmg
 # TODO: Check missing dependencies...
@@ -37,7 +38,8 @@ tar -zxvf Python-$VERSION.tgz &> /dev/null
 cd Python-$VERSION || exit
 
 echo "Configuring Python..."
-./configure MACOSX_DEPLOYMENT_TARGET=10.9 CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -I/usr/local/opt/xz/include/ -I/usr/local/opt/tcl-tk/include" LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/xz/lib -L/usr/local/opt/tcl-tk/lib" --prefix="$BUILD_OUT" --enable-optimizations > "$CURRENT_DIR"/configure.log 2>&1
+./configure MACOSX_DEPLOYMENT_TARGET=10.9 CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -I/usr/local/opt/xz/include/ -I/usr/local/opt/tcl-tk/include -I/usr/local/opt/sqlite/include" LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/xz/lib -L/usr/local/opt/tcl-tk/lib -L/usr/local/opt/sqlite/lib" --prefix="$BUILD_OUT" --enable-optimizations > "$CURRENT_DIR"/configure.log 2>&1
+
 
 echo "Building Python..."
 make -j4 altinstall > "$CURRENT_DIR"/make.log 2>&1
