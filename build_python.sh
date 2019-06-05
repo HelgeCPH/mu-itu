@@ -40,7 +40,7 @@ echo "Configuring Python..."
 ./configure CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -I/usr/local/opt/xz/include/ -I/usr/local/opt/tcl-tk/include" LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/xz/lib -L/usr/local/opt/tcl-tk/lib" --prefix="$BUILD_OUT" --enable-optimizations > "$CURRENT_DIR"/configure.log 2>&1
 
 echo "Building Python..."
-make altinstall > "$CURRENT_DIR"/make.log 2>&1
+make -j4 altinstall > "$CURRENT_DIR"/make.log 2>&1
 
 cd "$CURRENT_DIR" || exit
 
@@ -55,9 +55,9 @@ echo "Turning the Python distribution into a Mu Editor App..."
 echo "Installing Mu Editor..."
 "$BUILD_OUT"/bin/pip3.6 install mu-editor
 
-# Replace their icon with ours :)
+# Replacing their artwork with ours :)
 cp "$HOST"/mu-editor.iconset/icon_256x256.png "$BUILD_OUT"/python/lib/python3.6/site-packages/mu/resources/images/icon.png
-
+cp "$HOST"/splash-screen.png "$BUILD_OUT"/python/lib/python3.6/site-packages/mu/resources/images/
 
 echo "Copying our wrapper functions..."
 cp "$HOST"/mu_env.sh "$BUILD_OUT"/bin
